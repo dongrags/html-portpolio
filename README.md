@@ -6,6 +6,8 @@ I build and operate production web and mobile applications using AI-assisted dev
 
 **Portfolio:** https://dongrags.github.io/html-portpolio/ · **GitHub:** https://github.com/dongrags · Malaysia
 
+**Résumé:** https://dongrags.github.io/html-portpolio/resume.html · **Case study:** [Three production bugs from running Invoiceror](https://dongrags.github.io/html-portpolio/case-studies/invoiceror-production-fixes.html)
+
 My primary development workflow uses:
 
 - VS Code
@@ -58,6 +60,8 @@ index.html            Portfolio page
 assets/css/           Styles (light/dark themes)
 assets/js/main.js     Theme toggle, mobile menu, scroll reveal
 assets/img/           Optimized product screenshots and logos (WebP)
+resume.html           Résumé (print-friendly)
+case-studies/         Written technical case studies
 public/               Early HTML practice projects
 ```
 

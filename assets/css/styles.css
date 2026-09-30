@@ -532,3 +532,13 @@ h2.big { font-size: clamp(1.9rem, 4.6vw, 3.3rem); font-weight: 800; letter-spaci
   .card-slim .card-links { margin: 0 0 0 auto; padding: 0; border: 0; white-space: nowrap; flex-wrap: nowrap; }
   .card-slim .badge { white-space: nowrap; }
 }
+
+/* Case study link card */
+.case-link {
+  display: grid; gap: 6px; margin-top: 20px; padding: 22px 26px; border-radius: var(--radius);
+  border: 1px solid var(--border); background: linear-gradient(120deg, var(--accent-soft), transparent 60%), var(--surface);
+  color: var(--text); transition: border-color .2s ease, transform .2s ease;
+}
+.case-link:hover { text-decoration: none; border-color: var(--accent); transform: translateY(-2px); }
+.case-link strong { font-size: 1.15rem; letter-spacing: -0.01em; }
+.case-link .muted { font-size: .92rem; }

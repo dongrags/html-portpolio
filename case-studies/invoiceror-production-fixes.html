@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Invoiceror Field Notes | Dalmacio 'Dhong' Ragudo</title>
+  <meta name="description" content="Three production bugs from running Invoiceror — a timezone double-conversion, a PostgreSQL function that exceeded the AI assistant's permissions, and a race condition in agent-written code — and how I found and fixed them.">
+  <meta name="author" content="Dalmacio 'Dhong' Ragudo">
+  <link rel="canonical" href="https://dongrags.github.io/html-portpolio/case-studies/invoiceror-production-fixes.html">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230b0f17'/%3E%3Ctext x='16' y='21.5' font-family='Arial,sans-serif' font-size='14' font-weight='700' fill='%235eead4' text-anchor='middle'%3EDR%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/styles.css">
+  <link rel="stylesheet" href="../assets/css/doc.css">
+  <script>try { var t = localStorage.getItem('theme'); if (t) document.documentElement.setAttribute('data-theme', t); } catch (e) {}</script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="doc-top">
+    <div class="container">
+      <a class="back" href="../index.html#invoiceror">← Portfolio</a>
+      <div class="doc-actions">
+        <a class="btn btn-ghost" href="../resume.html">Résumé</a>
+        <button class="theme-toggle" type="button" aria-label="Toggle light and dark theme">
+          <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="doc">
+    <p class="eyebrow">Case study · Invoiceror</p>
+    <h1>Field notes: three production bugs and how I fixed them</h1>
+    <p class="doc-meta">Dalmacio 'Dhong' Ragudo · September 2026</p>
+    <p class="doc-lead">Most of Invoiceror's code is written by AI coding agents that I direct. My job is the part around them: reading what they produce, finding what is wrong when production misbehaves, fixing the root cause and verifying the result. These are three real incidents from that work.</p>
+
+    <div class="context">
+      <h3 style="margin-top:0">The system</h3>
+      <p>Invoiceror is a production invoicing and business management platform: a React + TypeScript web app, the same codebase shipped to Android with Capacitor, and a Supabase backend — PostgreSQL with 300+ migrations, row-level security policies, SQL functions and <code>pg_cron</code> scheduled jobs, plus Edge Functions for email delivery, the AI assistant and Stripe webhooks.</p>
+      <p>The source code is private because Invoiceror is a commercial product. The excerpts below are trimmed to the relevant lines, with customer data removed.</p>
+    </div>
+
+    <!-- ============ 1 ============ -->
+    <span class="incident-label">Incident 1 · Broke in production</span>
+    <h2>Reminder emails arrived with the wrong time</h2>
+
+    <h3>Symptom</h3>
+    <p>A user in Kuala Lumpur scheduled an activity for <strong>10:00 PM</strong>. The reminder email said <strong>06:00 AM GMT+8</strong> — eight hours off, and on the next day.</p>
+
+    <h3>Root cause</h3>
+    <p>Activity times are stored as the user's <em>local</em> date and time with no timezone attached (<code>date: "2025-12-12"</code>, <code>start_time: "22:00"</code>). The notification Edge Function built a <code>Date</code> from those strings, which the server interprets as UTC, and then converted it to the user's timezone — so a time that was already local got shifted a second time.</p>
+<pre><code><span class="c">// Before: "2025-12-12T22:00" is parsed as 22:00 UTC on the server…</span>
+const appointmentDateTime = new Date(`${appointment.date}T${appointment.start_time}`);
+<span class="bad">const formattedTime = appointmentDateTime.toLocaleString('en-US', {
+  hour: '2-digit', minute: '2-digit', timeZone: userTimezone, timeZoneName: 'short'
+});</span>  <span class="c">// …then shifted +8h again → 06:00 AM</span></code></pre>
+
+    <h3>Fix</h3>
+    <p>Treat the stored value as what it is — the user's local wall-clock time — and format it without any conversion, then append the user's timezone label.</p>
+<pre><code><span class="good">const [hours, minutes] = appointment.start_time.split(':').map(Number);
+const time12hr = new Date(2000, 0, 1, hours, minutes)
+  .toLocaleString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });</span>
+<span class="c">// 22:00 → "10:00 PM", then + " MYT (GMT+8)"</span></code></pre>
+
+    <h3>Verification</h3>
+    <p>Tested an evening (10:00 PM) and a morning (7:00 AM) activity in the Kuala Lumpur timezone and confirmed both reminder emails showed the time the user had set, then deployed the updated function.</p>
+
+    <p class="takeaway"><strong>What I would tighten next:</strong> the timezone label for Malaysia is currently special-cased. The durable fix is to store activities as <code>timestamptz</code> with the user's zone, so every consumer — email, push, calendar — reads the same unambiguous instant.</p>
+
+    <!-- ============ 2 ============ -->
+    <span class="incident-label">Incident 2 · Found by reading a query</span>
+    <h2>The AI assistant could create customers it had no permission to create</h2>
+
+    <h3>Symptom</h3>
+    <p>When a user asked the AI assistant to "create an invoice for" a business that was not in their customer list, a new customer record appeared that nobody had added — with only a name, no email, phone or address.</p>
+
+    <h3>Root cause</h3>
+    <p>The AI's invoice tool is backed by a PostgreSQL function. Reading it, the lookup-by-name had a fallback: if no customer matched, the function <em>inserted one</em>. That meant a typo or a hallucinated name from the model silently wrote to the <code>clients</code> table — the tool's scope was "create invoices", but the function could also create customers.</p>
+<pre><code>SELECT id INTO v_client_id
+FROM clients
+WHERE user_id = p_user_id
+  AND LOWER(TRIM(name)) = LOWER(TRIM(p_customer_data->>'name'));
+
+<span class="bad">IF v_client_id IS NULL THEN
+  INSERT INTO clients (user_id, name, company, email, phone, address)
+  VALUES (p_user_id, TRIM(p_customer_data->>'name'), '', '', '', '')
+  RETURNING id INTO v_client_id;
+END IF;</span></code></pre>
+
+    <h3>Fix</h3>
+    <p>A new migration replaced the fallback with an explicit, machine-readable error, so the assistant tells the user the customer was not found and asks them to add it — customer creation stays a deliberate user action.</p>
+<pre><code><span class="good">IF v_client_id IS NULL THEN
+  RETURN jsonb_build_object(
+    'success', false,
+    'error_code', 'CUSTOMER_NOT_FOUND',
+    'error', format('Customer "%s" not found. Please add this customer first.', v_customer_name)
+  );
+END IF;</span></code></pre>
+
+    <p class="takeaway"><strong>Why it matters:</strong> an AI tool should never be able to do more than the permission it was given. When I review agent-built features I now check the database functions behind each tool, not only the prompt and the UI.</p>
+
+    <!-- ============ 3 ============ -->
+    <span class="incident-label">Incident 3 · Found by reading agent-written code</span>
+    <h2>The voice assistant hung forever on "Processing…"</h2>
+
+    <h3>Symptom</h3>
+    <p>After speaking a command to the AI voice assistant, the UI showed "Processing…" indefinitely. The console showed "Auto-sending message" and then nothing — no request ever reached the AI endpoint.</p>
+
+    <h3>What did not work first</h3>
+    <p>An earlier change added a 45-second timeout. It never fired, because the problem was not a slow request — the request never started. Treating the symptom hid the real bug for another release.</p>
+
+    <h3>Root cause</h3>
+    <p>Reading the code path end to end: the speech handler set <code>isLoading = true</code> and then called <code>sendMessage()</code>. But <code>sendMessage()</code> begins with a guard that returns early whenever <code>isLoading</code> is already true. So the caller switched the loading state on, and that exact state made the function it called do nothing.</p>
+<pre><code><span class="c">// Speech handler (caller)</span>
+<span class="bad">setIsLoading(true);</span>
+await sendMessage();
+
+<span class="c">// sendMessage()</span>
+if (!inputMessage.trim() || !currentConversation || <span class="bad">isLoading</span>) return;  <span class="c">// ← always returned</span></code></pre>
+
+    <h3>Fix</h3>
+    <p>Let <code>sendMessage()</code> own its loading state: remove the caller's <code>setIsLoading(true)</code>, and wait for the pending input-state update before sending. Tested by speaking a command and checking the console for the outgoing request and the AI response.</p>
+
+    <p class="takeaway"><strong>What I would tighten next:</strong> the short wait for React state is a workaround. Passing the recognised text into <code>sendMessage(text)</code> as an argument removes the dependency on state timing altogether.</p>
+
+    <hr>
+
+    <h2>How I work on incidents</h2>
+    <ul class="bullets">
+      <li><strong>Reproduce first</strong> — get the failing case and the logs before changing anything.</li>
+      <li><strong>Read the real code path</strong> — including SQL functions and Edge Functions, not just the component that shows the error.</li>
+      <li><strong>Fix the root cause</strong>, and be suspicious of fixes (like a timeout) that make a symptom disappear.</li>
+      <li><strong>Verify on production</strong> with the same case that failed.</li>
+      <li><strong>Write it down</strong> — Invoiceror's fixes are documented in short written notes (over 100 so far): symptom, cause, change, verification. This page is three of them.</li>
+    </ul>
+
+    <p style="margin-top:32px"><a class="btn btn-primary" href="../index.html#invoiceror">Back to the portfolio</a></p>
+  </main>
+
+  <script src="../assets/js/main.js" defer></script>
+</body>
+</html>
