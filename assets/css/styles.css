@@ -502,3 +502,8 @@ h2.big { font-size: clamp(1.9rem, 4.6vw, 3.3rem); font-weight: 800; letter-spaci
 .background p { color: var(--text-2); }
 .background p + p { margin-top: 8px; }
 .background + .role-box { margin-top: 40px; }
+
+/* Web app button + inline logo links */
+.btn-webapp img { border-radius: 50%; flex: none; }
+.link-logo { display: inline-flex; align-items: center; gap: 6px; }
+.link-logo img { border-radius: 50%; }
