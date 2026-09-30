@@ -33,6 +33,22 @@
     });
   }
 
+  // Email: mailto does nothing on machines without a mail app, so also
+  // copy the address and confirm on the page.
+  var status = document.querySelector('.copy-status');
+  document.querySelectorAll('.js-email').forEach(function (link) {
+    link.addEventListener('click', function () {
+      var email = link.getAttribute('data-email');
+      if (!status || !navigator.clipboard) return;
+      navigator.clipboard.writeText(email).then(function () {
+        status.textContent = 'Email address copied: ' + email;
+        status.classList.add('is-visible');
+        clearTimeout(status._t);
+        status._t = setTimeout(function () { status.classList.remove('is-visible'); }, 4000);
+      }, function () {});
+    });
+  });
+
   // Subtle reveal on scroll.
   var targets = document.querySelectorAll('.section-head, .steps li, .panel, .tool, .area, .card, .why-grid, .callout, .role-box');
   if (!('IntersectionObserver' in window)) return;

@@ -507,3 +507,13 @@ h2.big { font-size: clamp(1.9rem, 4.6vw, 3.3rem); font-weight: 800; letter-spaci
 .btn-webapp img { border-radius: 50%; flex: none; }
 .link-logo { display: inline-flex; align-items: center; gap: 6px; }
 .link-logo img { border-radius: 50%; }
+
+/* Email copy confirmation */
+.contact .small a { color: var(--text-2); text-decoration: underline; text-decoration-color: var(--border-strong); text-underline-offset: 3px; }
+.contact .small a:hover { color: var(--accent); }
+.copy-status {
+  display: inline-block; min-height: 1.6em; margin-top: 12px; padding: 4px 12px; border-radius: 999px;
+  color: var(--accent); background: var(--accent-soft); font-weight: 500;
+  opacity: 0; transition: opacity .2s ease;
+}
+.copy-status.is-visible { opacity: 1; }
