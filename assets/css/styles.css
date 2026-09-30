@@ -495,3 +495,10 @@ h2.big { font-size: clamp(1.9rem, 4.6vw, 3.3rem); font-weight: 800; letter-spaci
 @media (max-width: 640px) {
   .play-showcase { padding: 18px; }
 }
+
+/* ---------- Background ---------- */
+.background { margin-top: 56px; padding-left: 20px; border-left: 3px solid var(--border-strong); max-width: 80ch; }
+.background .panel-title { margin-bottom: 10px; }
+.background p { color: var(--text-2); }
+.background p + p { margin-top: 8px; }
+.background + .role-box { margin-top: 40px; }
