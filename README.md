@@ -1,4 +1,4 @@
-# Dhong Ragudo
+# Dalmacio ‘Dhong’ Ragudo
 
 ## AI-Assisted Full-Stack Product Developer | Technical Operator
 
