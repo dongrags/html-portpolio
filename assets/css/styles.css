@@ -517,3 +517,18 @@ h2.big { font-size: clamp(1.9rem, 4.6vw, 3.3rem); font-weight: 800; letter-spaci
   opacity: 0; transition: opacity .2s ease;
 }
 .copy-status.is-visible { opacity: 1; }
+
+/* Last, low-priority card spans the full row on desktop */
+.card-slim { grid-column: 1 / -1; }
+@media (max-width: 1020px) { .card-slim { grid-column: span 3; } }
+@media (max-width: 640px) { .card-slim { grid-column: 1 / -1; } }
+@media (min-width: 1021px) {
+  .card-slim { flex-direction: row; align-items: center; gap: 20px; padding: 16px 24px; }
+  .card-slim:hover { transform: none; }
+  .card-slim .card-top { min-height: 0; }
+  .card-slim h3 { margin: 0; font-size: 1rem; white-space: nowrap; }
+  .card-slim .card-sub, .card-slim .tags { display: none; }
+  .card-slim > p:not(.card-sub) { font-size: .88rem; color: var(--text-3); }
+  .card-slim .card-links { margin: 0 0 0 auto; padding: 0; border: 0; white-space: nowrap; flex-wrap: nowrap; }
+  .card-slim .badge { white-space: nowrap; }
+}
