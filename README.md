@@ -22,7 +22,7 @@ I use AI as an engineering collaborator — not as a substitute for technical ow
 
 Production business management and invoicing platform with web and Android applications.
 
-https://invoiceror.com/
+https://invoiceror.com/ · Android app: https://play.google.com/store/apps/details?id=app.invoiceror.com
 
 Invoicing, quotes, customers, expenses, inventory with barcode scanning, reporting, task tracking and an AI business assistant. Hands-on work across React, TypeScript, Supabase/PostgreSQL, Capacitor, Android builds and Google Play releases.
 
