@@ -1,42 +1,526 @@
-<!-- TODO 1: Create the HTML Boilerplate -->
-
-<!-- TODO 2: Add Your previous projects' HTML into the public folder -->
-
-
-<!-- TODO 3: Take screenshots of your project previews and add the images to the images folder -->
-
-
-
-<!-- TODO 4: Add titles/subtitles etc. -->
-
-<!-- TODO 5: Add a link to the project pages -->
-
-<!-- TODO 6: Add images to show the project previews
-HINT for TODO 6: You can use the height attribute set to 200 to make the image smaller:
-https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attr-height -->
-
-<!-- TODO 7: Add the Contact Me and About Me page links -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dhong Ragudo Portfolio</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dhong Ragudo | AI-Assisted Full-Stack Product Developer &amp; Technical Operator</title>
+  <meta name="description" content="AI-assisted full-stack product developer and technical operator building production web, Android, AI and automation systems with Claude, ChatGPT, Google AI Studio and modern web technologies.">
+  <meta name="author" content="Dhong Ragudo">
+  <meta name="theme-color" content="#0b0f17">
+  <link rel="canonical" href="https://dongrags.github.io/html-portpolio/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Dhong Ragudo | AI-Assisted Full-Stack Product Developer &amp; Technical Operator">
+  <meta property="og:description" content="I build real software products by combining product thinking, AI-assisted development, automation and hands-on technical operations.">
+  <meta property="og:url" content="https://dongrags.github.io/html-portpolio/">
+  <meta name="twitter:card" content="summary">
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230b0f17'/%3E%3Ctext x='16' y='21.5' font-family='Arial,sans-serif' font-size='14' font-weight='700' fill='%235eead4' text-anchor='middle'%3EDR%3C/text%3E%3C/svg%3E">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+
+  <script>
+    // Apply saved theme before paint to avoid a flash.
+    try { var t = localStorage.getItem('theme'); if (t) document.documentElement.setAttribute('data-theme', t); } catch (e) {}
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Dalmacio Jaugan Ragudo",
+    "alternateName": "Dhong Ragudo",
+    "jobTitle": "AI-Assisted Full-Stack Product Developer",
+    "address": { "@type": "PostalAddress", "addressCountry": "MY" },
+    "url": "https://dongrags.github.io/html-portpolio/",
+    "sameAs": ["https://github.com/dongrags"]
+  }
+  </script>
 </head>
 <body>
-    <h1>Dhong Ragudo Portfolio</h1>
-    <br>
-    <h2>My Web developer journey</h2>
-    <hr>
-    <h2><a href="./public/movie-ranking.html">Movie Ranking Project</a></h2>
-    <img src="./assets/images/my movie web project.png">
+  <a class="skip-link" href="#main">Skip to content</a>
 
-    <h2><a href="./public/birthday-invite.html">Birthday invitation project link</a></h2>
-    <img src="./assets/images/my birthday invitation.png">
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="#top" aria-label="Dhong Ragudo, back to top">
+        <span class="brand-mark" aria-hidden="true">DR</span>
+        <span class="brand-name">Dhong Ragudo</span>
+      </a>
+      <nav aria-label="Primary">
+        <button class="nav-toggle" aria-expanded="false" aria-controls="nav-links">
+          <span class="sr-only">Menu</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+        <ul id="nav-links" class="nav-links">
+          <li><a href="#process">How I build</a></li>
+          <li><a href="#invoiceror">Invoiceror</a></li>
+          <li><a href="#fivebatch">FiveBatch</a></li>
+          <li><a href="#operator">Operator</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <button class="theme-toggle" type="button" aria-label="Toggle light and dark theme">
+        <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+  </header>
 
-    <a href="./public/about.html">About me</a>
-    <a href="./public/contact.html"> Contact me</a>
+  <main id="main">
 
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="top">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">AI-Assisted Product Development</p>
+          <h1>I Build Real Products<br><span class="grad">With AI, Automation &amp; Technology.</span></h1>
+          <p class="lead">I'm Dhong Ragudo — an AI-assisted full-stack product developer and technical operator building production web and mobile applications, AI workflows and automation systems.</p>
+          <p class="muted">For more than two years, I have been building and operating software products using AI-assisted development with VS Code, Claude, ChatGPT and Google AI Studio.</p>
+          <p class="muted">I turn product ideas into working systems — from architecture and feature development to API integration, debugging, deployment and production improvement.</p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="#projects">View my projects</a>
+            <a class="btn btn-ghost" href="https://github.com/dongrags" target="_blank" rel="noopener">Visit GitHub</a>
+            <a class="btn btn-text" href="#contact">Contact me <span aria-hidden="true">→</span></a>
+          </div>
+        </div>
+
+        <aside class="console" aria-label="Products I build and operate">
+          <div class="console-bar" aria-hidden="true"><span></span><span></span><span></span><em>products / live</em></div>
+          <ul class="console-list">
+            <li>
+              <img src="assets/img/logo-invoiceror.webp" width="40" height="40" alt="">
+              <div>
+                <strong>Invoiceror</strong>
+                <span>Business management &amp; invoicing · Web + Android</span>
+              </div>
+              <a href="https://invoiceror.com/" target="_blank" rel="noopener" class="status" aria-label="Visit invoiceror.com">live ↗</a>
+            </li>
+            <li>
+              <img src="assets/img/logo-fivebatch.webp" width="40" height="40" alt="">
+              <div>
+                <strong>FiveBatch</strong>
+                <span>AI marketing &amp; social automation · Web</span>
+              </div>
+              <a href="https://fivebatch.com/" target="_blank" rel="noopener" class="status" aria-label="Visit fivebatch.com">live ↗</a>
+            </li>
+          </ul>
+          <div class="console-foot">
+            <p><span class="k">role</span> product builder · technical operator</p>
+            <p><span class="k">workflow</span> VS Code + Claude · ChatGPT · Google AI Studio</p>
+            <p><span class="k">location</span> Malaysia</p>
+          </div>
+        </aside>
+      </div>
+
+      <div class="container">
+        <ul class="cap-strip" aria-label="Capability summary">
+          <li><strong>2+ Years</strong><span>Hands-on AI-assisted development</span></li>
+          <li><strong>Web + Android</strong><span>Production applications</span></li>
+          <li><strong>AI + Automation</strong><span>AI agents &amp; automated workflows</span></li>
+          <li><strong>API Integration</strong><span>Social &amp; business APIs</span></li>
+          <li><strong>Production</strong><span>Deployment &amp; troubleshooting</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ HOW I BUILD ============ -->
+    <section class="section" id="process">
+      <div class="container">
+        <header class="section-head">
+          <p class="kicker"><span>01</span> How I build software</p>
+          <h2>I use AI as an engineering collaborator — not as a substitute for technical ownership.</h2>
+          <p class="muted">My development workflow combines product thinking with AI-assisted implementation.</p>
+        </header>
+
+        <ol class="steps">
+          <li><span class="step-n">01</span><h3>Understand</h3><p>Understand the business requirement, user workflow and desired outcome.</p></li>
+          <li><span class="step-n">02</span><h3>Plan</h3><p>Break the requirement into technical components, data flows, APIs and implementation tasks.</p></li>
+          <li class="is-ai"><span class="step-n">03</span><h3>Build with AI</h3><p>Use Claude, ChatGPT and Google AI Studio through VS Code to accelerate implementation and explore solutions.</p></li>
+          <li><span class="step-n">04</span><h3>Review</h3><p>Inspect the generated code, architecture and behavior rather than blindly accepting AI output.</p></li>
+          <li><span class="step-n">05</span><h3>Test &amp; Debug</h3><p>Run the application, reproduce problems, investigate errors and iterate on the implementation.</p></li>
+          <li><span class="step-n">06</span><h3>Deploy</h3><p>Move working changes into production and handle deployment, configuration and integration issues.</p></li>
+          <li><span class="step-n">07</span><h3>Improve</h3><p>Monitor the product, add features, fix bugs and continuously improve the system.</p></li>
+        </ol>
+
+        <blockquote class="callout">My experience is built around shipping working software — not simply completing coding exercises.</blockquote>
+      </div>
+    </section>
+
+    <!-- ============ INVOICEROR ============ -->
+    <section class="section section-alt" id="invoiceror">
+      <div class="container">
+        <header class="section-head project-head">
+          <p class="kicker"><span>02</span> Primary project</p>
+          <div class="project-title">
+            <img src="assets/img/logo-invoiceror.webp" width="56" height="56" alt="Invoiceror logo">
+            <div>
+              <h2>Invoiceror</h2>
+              <p class="subtitle">Business Management &amp; Invoicing Platform</p>
+            </div>
+          </div>
+          <p class="lead">Invoiceror is a production business management and invoicing platform that I have built and continue to develop, with web and Android applications designed to help small businesses manage everyday operations.</p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="https://invoiceror.com/" target="_blank" rel="noopener">Visit invoiceror.com ↗</a>
+            <span class="private-pill">Commercial source code is private</span>
+          </div>
+        </header>
+
+        <div class="shots" role="list" aria-label="Invoiceror Android app screenshots">
+          <figure role="listitem"><img src="assets/img/invoiceror-dashboard.webp" width="440" height="836" loading="lazy" decoding="async" alt="Invoiceror business dashboard showing revenue, income, expenses and profit cards"><figcaption>Business dashboard</figcaption></figure>
+          <figure role="listitem"><img src="assets/img/invoiceror-invoice.webp" width="440" height="854" loading="lazy" decoding="async" alt="New invoice screen with client selection, invoice number, dates and currency"><figcaption>Invoice creation</figcaption></figure>
+          <figure role="listitem"><img src="assets/img/invoiceror-delivery.webp" width="440" height="822" loading="lazy" decoding="async" alt="Invoice actions: save draft, email, preview, PDF and WhatsApp delivery"><figcaption>Multi-channel delivery</figcaption></figure>
+          <figure role="listitem"><img src="assets/img/invoiceror-ai-assistant.webp" width="440" height="826" loading="lazy" decoding="async" alt="EVO-AI business assistant chat screen"><figcaption>AI business assistant</figcaption></figure>
+          <figure role="listitem"><img src="assets/img/invoiceror-barcode.webp" width="440" height="830" loading="lazy" decoding="async" alt="Add inventory item dialog with barcode scan button"><figcaption>Inventory + barcode scan</figcaption></figure>
+          <figure role="listitem"><img src="assets/img/invoiceror-tasks.webp" width="440" height="837" loading="lazy" decoding="async" alt="Task tracker with due date and notification settings"><figcaption>Task tracking</figcaption></figure>
+        </div>
+
+        <div class="split">
+          <div class="panel">
+            <h3 class="panel-title">What I built</h3>
+            <ul class="check-list cols-2">
+              <li>Smart invoice creation</li>
+              <li>Quotes</li>
+              <li>Customer management</li>
+              <li>Expense tracking</li>
+              <li>Inventory management</li>
+              <li>Barcode scanning</li>
+              <li>Sales reporting</li>
+              <li>Invoice status monitoring</li>
+              <li>Task &amp; activity tracking</li>
+              <li>Multi-channel invoice delivery</li>
+              <li>Business dashboard</li>
+              <li>AI business assistant</li>
+              <li>Company logo &amp; signature</li>
+              <li>AgriBiz / farming workflows</li>
+            </ul>
+          </div>
+          <div class="panel">
+            <h3 class="panel-title">What I handle</h3>
+            <ul class="check-list cols-2">
+              <li>Product feature planning</li>
+              <li>UI &amp; workflow implementation</li>
+              <li>Database integration</li>
+              <li>Authentication</li>
+              <li>API integration</li>
+              <li>AI feature integration</li>
+              <li>Bug investigation</li>
+              <li>Build troubleshooting</li>
+              <li>Deployment</li>
+              <li>Android builds</li>
+              <li>Google Play releases</li>
+              <li>Production troubleshooting</li>
+              <li>Continuous feature development</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="split">
+          <div class="panel">
+            <h3 class="panel-title">AI-assisted development</h3>
+            <p>I use VS Code with Claude, ChatGPT and Google AI Studio as development collaborators to implement features, investigate bugs, refactor code, explore solutions and accelerate product development.</p>
+            <h3 class="panel-title mt">Technology / areas</h3>
+            <ul class="tags">
+              <li>React</li><li>Vite</li><li>TypeScript</li><li>Tailwind CSS</li><li>Supabase</li><li>PostgreSQL</li><li>APIs</li><li>Authentication</li><li>Capacitor</li><li>Android</li><li>GitHub</li><li>VPS</li><li>Nginx</li><li>Google Play</li>
+            </ul>
+            <p class="note">Hands-on experience working across these technologies through AI-assisted development and production operation.</p>
+          </div>
+
+          <div class="panel">
+            <h3 class="panel-title">System overview</h3>
+            <ol class="flow" aria-label="Invoiceror high-level architecture">
+              <li><span class="flow-node">User</span></li>
+              <li><span class="flow-node">Web / Android application</span><small>React UI · Capacitor Android shell</small></li>
+              <li><span class="flow-node">Application logic</span><small>Invoicing, inventory, expenses, tasks</small></li>
+              <li><span class="flow-node">API / services</span><small>Auth, AI assistant, delivery</small></li>
+              <li><span class="flow-node flow-db">Supabase / PostgreSQL</span><small>Data, auth, storage</small></li>
+              <li><span class="flow-node flow-ext">External integrations</span><small>Email, WhatsApp, AI models, payments</small></li>
+            </ol>
+            <p class="note">High-level view only — no configuration or credentials are shown.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FIVEBATCH ============ -->
+    <section class="section" id="fivebatch">
+      <div class="container">
+        <header class="section-head project-head">
+          <p class="kicker"><span>03</span> Second major project</p>
+          <div class="project-title">
+            <img src="assets/img/logo-fivebatch.webp" width="56" height="56" alt="FiveBatch logo">
+            <div>
+              <h2>FiveBatch</h2>
+              <p class="subtitle">AI Marketing &amp; Social Media Automation Platform</p>
+            </div>
+          </div>
+          <p class="lead">FiveBatch is an AI marketing and automation platform I built to help businesses create marketing content and automate publishing workflows.</p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="https://fivebatch.com/" target="_blank" rel="noopener">Visit fivebatch.com ↗</a>
+            <span class="private-pill">Commercial source code is private</span>
+          </div>
+        </header>
+
+        <div class="split">
+          <div class="panel panel-accent">
+            <h3 class="panel-title">AI influencer</h3>
+            <p>One of the workflows I developed is an AI influencer system capable of creating an AI influencer and using generated content within automated publishing workflows.</p>
+            <ol class="flow flow-compact" aria-label="AI influencer workflow">
+              <li><span class="flow-node">AI influencer</span></li>
+              <li><span class="flow-node">Content generation</span></li>
+              <li><span class="flow-node">Platform-specific content</span></li>
+              <li><span class="flow-node flow-ext">Facebook / Instagram / TikTok / YouTube</span></li>
+            </ol>
+          </div>
+          <div class="panel">
+            <h3 class="panel-title">Social publishing</h3>
+            <p>The platform is designed to automate content publishing workflows across social platforms through APIs, including Facebook, Instagram, TikTok and YouTube.</p>
+            <ul class="api-grid">
+              <li>Facebook API</li><li>Instagram API</li><li>TikTok API</li><li>YouTube API</li>
+            </ul>
+            <h3 class="panel-title mt">Workflow areas I built and developed</h3>
+            <ul class="check-list cols-2">
+              <li>AI content generation</li>
+              <li>AI image workflows</li>
+              <li>AI video workflows</li>
+              <li>Marketing campaign automation</li>
+              <li>Content publishing workflows</li>
+              <li>Automated post queues</li>
+              <li>AI agents</li>
+              <li>Trend / insight workflows</li>
+              <li>API integrations</li>
+              <li>Subscription-oriented SaaS</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h3 class="panel-title">Automation flow</h3>
+          <ol class="pipeline" aria-label="FiveBatch content automation flow">
+            <li>Idea</li><li>AI generation</li><li>Content / creative</li><li>Approval / workflow</li><li>Social API</li><li class="is-end">Automated publishing</li>
+          </ol>
+          <ul class="tags mt">
+            <li>Next.js</li><li>React</li><li>TypeScript</li><li>Tailwind CSS</li><li>Supabase</li><li>PostgreSQL</li><li>Background job queues</li><li>OpenAI API</li><li>Gemini API</li><li>Social APIs</li><li>Stripe billing</li><li>VPS</li>
+          </ul>
+          <p class="note">Hands-on experience working across these technologies through AI-assisted development and production operation.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ AI TOOLKIT ============ -->
+    <section class="section section-alt" id="toolkit">
+      <div class="container">
+        <header class="section-head">
+          <p class="kicker"><span>04</span> My AI development toolkit</p>
+          <h2>AI-assisted engineering, human technical ownership.</h2>
+          <p class="muted">These tools speed up implementation. Direction, review, testing, debugging and iteration stay with me.</p>
+        </header>
+        <div class="tool-grid">
+          <article class="tool">
+            <h3>Claude</h3>
+            <p>AI coding and development agent used extensively through VS Code for implementation, debugging, refactoring and technical problem solving.</p>
+          </article>
+          <article class="tool">
+            <h3>ChatGPT</h3>
+            <p>Used for architecture exploration, technical reasoning, debugging, planning, documentation, product development and problem solving.</p>
+          </article>
+          <article class="tool">
+            <h3>Google AI Studio</h3>
+            <p>Used for AI experimentation, Gemini-based workflows, prompt development and AI feature development.</p>
+          </article>
+          <article class="tool">
+            <h3>VS Code</h3>
+            <p>Primary development environment where I coordinate AI-assisted development, inspect code, test changes and manage projects.</p>
+          </article>
+        </div>
+        <ul class="principles" aria-label="Principles">
+          <li>AI-assisted engineering</li><li>Human technical ownership</li><li>Review</li><li>Testing</li><li>Debugging</li><li>Iteration</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ OPERATOR ============ -->
+    <section class="section operator" id="operator">
+      <div class="container">
+        <header class="section-head center">
+          <p class="kicker"><span>05</span> Technical operator</p>
+          <h2 class="big">AI doesn't replace the operator.<br><span class="grad">It makes the operator faster.</span></h2>
+          <p class="lead">My role in AI-assisted development is to provide direction, context, constraints and validation.</p>
+        </header>
+        <ol class="pipeline pipeline-lg" aria-label="Operator loop">
+          <li>Prompt</li><li>Implement</li><li>Review</li><li>Test</li><li>Debug</li><li>Validate</li><li class="is-end">Ship</li>
+        </ol>
+        <p class="center muted narrow">I am comfortable working with AI agents as development collaborators while maintaining responsibility for the final system.</p>
+      </div>
+    </section>
+
+    <!-- ============ PRODUCTION ============ -->
+    <section class="section section-alt" id="production">
+      <div class="container">
+        <header class="section-head">
+          <p class="kicker"><span>06</span> Production &amp; deployment</p>
+          <h2>From idea to production.</h2>
+        </header>
+        <ol class="pipeline" aria-label="Idea to production lifecycle">
+          <li>Planning</li><li>Development</li><li>Database</li><li>API integration</li><li>Testing</li><li>Build</li><li>Deployment</li><li>Production</li><li class="is-end">Continuous improvement</li>
+        </ol>
+        <div class="split mt-lg">
+          <div>
+            <ul class="tags">
+              <li>GitHub</li><li>Supabase</li><li>PostgreSQL</li><li>VPS</li><li>Nginx</li><li>Capacitor</li><li>Android</li><li>Google Play Console</li><li>Authentication</li><li>APIs</li><li>Environment configuration</li>
+            </ul>
+          </div>
+          <blockquote class="callout callout-sm">I have experience troubleshooting real production problems rather than working only in development environments.</blockquote>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ TECHNICAL AREAS ============ -->
+    <section class="section" id="skills">
+      <div class="container">
+        <header class="section-head">
+          <p class="kicker"><span>07</span> Selected technical areas</p>
+          <h2>Where I have hands-on experience.</h2>
+          <p class="muted">Gained through AI-assisted development of my own production products — not listed as formal expertise.</p>
+        </header>
+        <div class="area-grid">
+          <div class="area"><h3>Frontend</h3><ul><li>React</li><li>Next.js</li><li>TypeScript</li><li>HTML</li><li>CSS</li><li>Responsive UI</li></ul></div>
+          <div class="area"><h3>Backend / Data</h3><ul><li>Supabase</li><li>PostgreSQL</li><li>Authentication</li><li>Storage</li><li>APIs</li><li>Webhooks</li></ul></div>
+          <div class="area"><h3>Mobile</h3><ul><li>Android</li><li>Capacitor</li><li>Google Play Console</li></ul></div>
+          <div class="area"><h3>AI</h3><ul><li>Claude</li><li>ChatGPT</li><li>Google AI Studio</li><li>AI agents</li><li>AI content generation</li><li>AI automation</li></ul></div>
+          <div class="area"><h3>Integrations</h3><ul><li>REST APIs</li><li>Facebook</li><li>Instagram</li><li>TikTok</li><li>YouTube</li><li>Third-party services</li></ul></div>
+          <div class="area"><h3>Infrastructure</h3><ul><li>GitHub</li><li>VPS</li><li>Nginx</li><li>Deployment</li><li>Environment configuration</li></ul></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PROJECTS ============ -->
+    <section class="section section-alt" id="projects">
+      <div class="container">
+        <header class="section-head">
+          <p class="kicker"><span>08</span> Portfolio projects</p>
+          <h2>Products and project experience.</h2>
+        </header>
+
+        <div class="card-grid">
+          <article class="card card-feature">
+            <div class="card-top"><img src="assets/img/logo-invoiceror.webp" width="40" height="40" alt="" loading="lazy"><span class="badge">Production · Web + Android</span></div>
+            <h3>Invoiceror</h3>
+            <p class="card-sub">Business Management &amp; Invoicing Platform</p>
+            <p>Invoicing, quotes, customers, expenses, inventory with barcode scanning, reporting, task tracking and an AI business assistant for small businesses.</p>
+            <dl><dt>Role</dt><dd>Product builder &amp; technical operator — planning, AI-assisted development, testing, deployment, Android releases</dd></dl>
+            <ul class="tags tags-sm"><li>React</li><li>TypeScript</li><li>Supabase</li><li>Capacitor</li><li>Android</li></ul>
+            <div class="card-links"><a href="https://invoiceror.com/" target="_blank" rel="noopener">invoiceror.com ↗</a><span>Commercial source code is private</span></div>
+          </article>
+
+          <article class="card card-feature">
+            <div class="card-top"><img src="assets/img/logo-fivebatch.webp" width="40" height="40" alt="" loading="lazy"><span class="badge">Production · Web SaaS</span></div>
+            <h3>FiveBatch</h3>
+            <p class="card-sub">AI Marketing &amp; Automation Platform</p>
+            <p>AI content generation, AI influencer workflows, post queues and social publishing workflows for Facebook, Instagram, TikTok and YouTube.</p>
+            <dl><dt>Role</dt><dd>Product builder &amp; technical operator — workflow design, AI and API integration, deployment</dd></dl>
+            <ul class="tags tags-sm"><li>Next.js</li><li>TypeScript</li><li>Supabase</li><li>AI APIs</li><li>Social APIs</li></ul>
+            <div class="card-links"><a href="https://fivebatch.com/" target="_blank" rel="noopener">fivebatch.com ↗</a><span>Commercial source code is private</span></div>
+          </article>
+
+          <article class="card">
+            <div class="card-top"><span class="badge badge-muted">Product development</span></div>
+            <h3>Central Marketing AI</h3>
+            <p class="card-sub">The workspace behind FiveBatch</p>
+            <p>The product development workspace where FiveBatch's application, background publishing worker and separate marketing landing site were built and iterated.</p>
+            <dl><dt>Role</dt><dd>Product planning, AI-assisted development, deployment</dd></dl>
+            <ul class="tags tags-sm"><li>Next.js</li><li>Job queues</li><li>AI APIs</li></ul>
+            <div class="card-links"><span>Private</span></div>
+          </article>
+
+          <article class="card">
+            <div class="card-top"><span class="badge badge-muted">Automation</span></div>
+            <h3>Invoiceror SEO &amp; content automation</h3>
+            <p class="card-sub">Content workflow supporting Invoiceror</p>
+            <p>Automation work around producing and publishing SEO blog content for the Invoiceror product.</p>
+            <dl><dt>Role</dt><dd>Workflow setup and operation</dd></dl>
+            <ul class="tags tags-sm"><li>AI content</li><li>GitHub</li><li>Automation</li></ul>
+            <div class="card-links"><span>Private</span></div>
+          </article>
+
+          <article class="card">
+            <div class="card-top"><span class="badge badge-muted">Foundations · 2025</span></div>
+            <h3>Early web fundamentals</h3>
+            <p class="card-sub">HTML practice projects</p>
+            <p>Early static HTML exercises from when I started learning web fundamentals, kept for reference.</p>
+            <ul class="tags tags-sm"><li>HTML</li></ul>
+            <div class="card-links"><a href="public/movie-ranking.html">Movie ranking</a><a href="public/birthday-invite.html">Birthday invite</a></div>
+          </article>
+        </div>
+
+        <aside class="private-note" aria-label="Note about private source code">
+          <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10" width="14" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+          <p>Some projects shown here are active commercial products, so their production source code is private. This portfolio provides architecture, feature demonstrations and technical context without exposing proprietary code or credentials.</p>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ============ WHY TECH OPS ============ -->
+    <section class="section" id="why">
+      <div class="container">
+        <header class="section-head">
+          <p class="kicker"><span>09</span> Why technical operations</p>
+          <h2>I enjoy the part of software development where ideas become working systems.</h2>
+        </header>
+        <div class="why-grid">
+          <div><h3>Build</h3><p>Turn product requirements into working features.</p></div>
+          <div><h3>Operate</h3><p>Keep applications functioning across development and production.</p></div>
+          <div><h3>Debug</h3><p>Investigate unexpected behavior and fix problems.</p></div>
+          <div><h3>Integrate</h3><p>Connect applications to databases, APIs and external services.</p></div>
+          <div><h3>Automate</h3><p>Reduce repetitive work through workflows and AI agents.</p></div>
+          <div><h3>Improve</h3><p>Continuously ship improvements based on real-world needs.</p></div>
+        </div>
+        <p class="muted narrow mt-lg">This combination of product thinking, AI-assisted development and hands-on troubleshooting is the type of environment where I work best.</p>
+
+        <div class="role-box">
+          <h3>Why this role interests me</h3>
+          <p>The Technical Operator and Web Developer role interests me because it combines several areas I have been working across in my own products: building features, fixing bugs, working with AI coding agents, reviewing AI-generated work, integrating systems and keeping production software moving.</p>
+          <ul class="tags tags-sm">
+            <li>AI-assisted development</li><li>Feature development</li><li>Bug fixing</li><li>Production operation</li><li>API integration</li><li>Automation</li><li>Web applications</li><li>Database-backed systems</li><li>Continuous improvement</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section class="section contact" id="contact">
+      <div class="container center">
+        <h2 class="big">Let's build something useful.</h2>
+        <p class="lead narrow">I'm interested in opportunities where I can combine AI-assisted development, automation, product thinking and hands-on technical operations.</p>
+        <div class="cta-row cta-center">
+          <a class="btn btn-primary" href="mailto:dhongragudo@gmail.com">Email me</a>
+          <a class="btn btn-ghost" href="https://github.com/dongrags" target="_blank" rel="noopener">GitHub</a>
+          <a class="btn btn-ghost" href="#projects">Portfolio projects</a>
+          <!-- LinkedIn: add when available → <a class="btn btn-ghost" href="[LINKEDIN]">LinkedIn</a> -->
+        </div>
+        <p class="muted small">dhongragudo@gmail.com · Malaysia</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <p class="footer-name">Dhong Ragudo</p>
+        <p class="muted small">AI-Assisted Full-Stack Product Developer<br>Technical Operator | AI Automation Builder</p>
+      </div>
+      <ul class="footer-links">
+        <li><a href="https://github.com/dongrags" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="https://invoiceror.com/" target="_blank" rel="noopener">Invoiceror</a></li>
+        <li><a href="https://fivebatch.com/" target="_blank" rel="noopener">FiveBatch</a></li>
+      </ul>
+      <p class="muted small copyright">Copyright © 2026 Dhong Ragudo</p>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js" defer></script>
 </body>
 </html>
