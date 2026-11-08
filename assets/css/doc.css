@@ -122,3 +122,9 @@
   .job .what { font-size: 10.5pt; margin-top: 3px; }
   .job .stack { font-size: 9.5pt; margin-top: 3px; }
 }
+@media print {
+  /* Let long project blocks flow across pages instead of leaving half a page empty; keep each title with its first lines. */
+  .job { break-inside: auto; }
+  .job-head, .job .where, .job .what { break-after: avoid; }
+  .job ul.bullets li { break-inside: avoid; }
+}
