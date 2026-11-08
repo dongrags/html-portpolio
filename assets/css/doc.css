@@ -104,3 +104,21 @@
 .resume-contact { flex: none; white-space: nowrap; }
 @media print { .resume-title { font-size: 10.5pt; } }
 .phone-slot:not(:empty) + br { display: none; }
+
+/* Résumé: quick-scan blocks for hiring managers */
+.resume .highlights { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 18px 0 4px; padding: 0; list-style: none; }
+.resume .highlights li { border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; background: var(--surface-2); }
+.resume .highlights strong { display: block; font-size: 1.05rem; color: var(--text); letter-spacing: -0.01em; }
+.resume .highlights span { font-size: .8rem; color: var(--text-3); }
+.job .what { font-size: .95rem; color: var(--text-2); margin-top: 6px; }
+.job .stack { font-size: .85rem; color: var(--text-3); margin-top: 6px; }
+.job .stack b { color: var(--text-2); font-weight: 600; }
+@media (max-width: 640px) { .resume .highlights { grid-template-columns: repeat(2, 1fr); } }
+@media print {
+  .resume .highlights { gap: 6px; margin: 10px 0 2px; }
+  .resume .highlights li { padding: 5px 8px; background: #fff; }
+  .resume .highlights strong { font-size: 10.5pt; }
+  .resume .highlights span { font-size: 8.5pt; }
+  .job .what { font-size: 10.5pt; margin-top: 3px; }
+  .job .stack { font-size: 9.5pt; margin-top: 3px; }
+}
